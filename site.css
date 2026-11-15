@@ -219,7 +219,7 @@ p { margin: 0; text-wrap: pretty; }
 .weeks strong { display: block; color: var(--ink); font-size: 16px; margin-bottom: 2px; }
 
 /* ── питание ── */
-.quiz { max-width: 1240px; margin-inline: auto; display: grid; grid-template-columns: .8fr 1.6fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.quiz { max-width: 1240px; margin-inline: auto; display: grid; grid-template-columns: .7fr 1.8fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
 .quiz__q { font-weight: 700; font-size: 18px; margin: 0 0 12px; }
 .quiz__q + .pills { margin-bottom: 28px; }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -228,16 +228,17 @@ p { margin: 0; text-wrap: pretty; }
 .pills button[aria-checked="true"] { background: var(--lime); color: var(--lime-ink); box-shadow: none; }
 .quiz__note { color: var(--muted); font-size: 15px; }
 .menu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.dish { --rx: 0deg; --ry: 0deg; position: relative; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 3 / 4; background: var(--surface); transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .5s var(--ease); }
+.dish { --rx: 0deg; --ry: 0deg; position: relative; display: flex; flex-direction: column; border-radius: var(--r-lg); overflow: hidden; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .5s var(--ease); }
 .dish.is-tilting { transition: transform .08s linear; }
-.dish img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
-.dish:hover img { transform: scale(1.04); }
-.dish__body { position: absolute; left: 10px; right: 10px; bottom: 10px; padding: 14px 16px; border-radius: 18px; }
+.dish__photo { position: relative; aspect-ratio: 1; overflow: hidden; }
+.dish__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.dish:hover .dish__photo img { transform: scale(1.04); }
+.dish__body { padding: 16px 16px 18px; display: grid; gap: 2px; }
 .dish__when { font-size: 13px; color: var(--lime); font-weight: 600; }
-.dish h3 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; margin-top: 2px; }
-.kbju { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
-.kbju span { padding: 3px 8px; border-radius: 999px; background: rgba(238,244,234,.1); }
-.kbju span:first-child { background: var(--lime); color: var(--lime-ink); font-weight: 650; }
+.dish h3 { font-size: 18px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+.kbju { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.kbju span { padding: 3px 7px; border-radius: 999px; background: rgba(238,244,234,.08); color: var(--muted); }
+.kbju span:first-child { background: color-mix(in oklab, var(--lime) 16%, transparent); color: var(--lime); font-weight: 650; }
 .menu.is-swapping .dish__body { opacity: 0; transform: translateY(6px); }
 .dish__body { transition: opacity .25s, transform .25s var(--ease); }
 
@@ -261,6 +262,7 @@ p { margin: 0; text-wrap: pretty; }
 .feat li { display: grid; gap: 2px; padding: 16px 0; border-top: 1px solid var(--line); }
 .feat b { font-size: 19px; font-weight: 700; letter-spacing: -.02em; }
 .feat span { color: var(--muted); font-size: 16px; }
+.app__note { color: var(--muted); font-size: 14px; margin-top: 14px; max-width: 26em; }
 .phones { --rx: 8deg; --ry: -16deg; position: relative; height: 640px; perspective: 1400px; }
 .phone {
   position: absolute; width: 290px; aspect-ratio: 390 / 844; border-radius: 46px; padding: 10px;
@@ -379,7 +381,9 @@ html:not(.motion) .reveal { opacity: 1; transform: none; }
   .ticker { translate: 0 -10px; }
   .ticker__row { font-size: 18px; padding: 12px 0; }
   .menu { grid-template-columns: 1fr 1fr; }
-  .menu .dish:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+  .menu .dish:last-child { grid-column: 1 / -1; flex-direction: row; }
+  .menu .dish:last-child .dish__photo { flex: 0 0 46%; }
+  .menu .dish:last-child .dish__body { align-content: center; }
   .weeks { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
@@ -398,7 +402,9 @@ html:not(.motion) .reveal { opacity: 1; transform: none; }
   .pcard h3 { font-size: 27px; }
   .pcard__obj--food { width: 180px; }
   .menu { grid-template-columns: 1fr; }
-  .menu .dish, .menu .dish:last-child { aspect-ratio: 4 / 3; grid-column: auto; }
+  .menu .dish, .menu .dish:last-child { grid-column: auto; flex-direction: row; }
+  .menu .dish .dish__photo { flex: 0 0 42%; aspect-ratio: auto; min-height: 150px; }
+  .menu .dish .dish__body { align-content: center; }
   .sched__row { grid-template-columns: 48px 1fr 1fr; }
   .sched__row > * { padding: 12px 10px; font-size: 14px; }
   .phones { height: 520px; }

@@ -170,9 +170,9 @@
   const fName = document.getElementById('f-name');
   const fContact = document.getElementById('f-contact');
   const DONE = {
-    course: ['Курс твой!', 'Доступ к «Тонус за 6 недель» уже в приложении. Начни с анкеты, и я соберу тебе меню.'],
-    personal: ['Ты записана!', 'Я напишу тебе в течение дня, и выберем время первой тренировки.'],
-    group: ['Добро пожаловать в группу!', 'Ближайший эфир в понедельник в 8:00 по Москве. Напоминание придёт в приложение.'],
+    course: ['Курс твой!', 'Войди в приложение по номеру или нику, который указала, и начинай с анкеты: я соберу тебе меню.'],
+    personal: ['Ты записана!', 'Войди в приложение по своему контакту и выбери время первой тренировки. Я напишу в течение дня.'],
+    group: ['Добро пожаловать в группу!', 'Войди в приложение по своему контакту: там расписание эфиров и запись. Ближайший в понедельник в 8:00 по Москве.'],
   };
   let pushed = false, lastFocus = null;
 
@@ -228,6 +228,8 @@
     setTimeout(() => {
       payBtn.removeAttribute('aria-busy');
       payBtn.innerHTML = '<span class="pay-label">Оплатить</span>';
+      // покупка уходит в приложение: оно подставит контакт во вход и откроет доступ
+      try { localStorage.setItem('tonus:handoff', JSON.stringify({product, name, contact, at: Date.now()})); } catch (err) { /* приватный режим: войдёт по коду вручную */ }
       const [t, txt] = DONE[product];
       document.getElementById('done-title').textContent = `${name}, ${t.charAt(0).toLowerCase()}${t.slice(1)}`;
       document.getElementById('done-text').textContent = txt;

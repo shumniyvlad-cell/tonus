@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/hero-clean-cut.webp">
-<link rel="stylesheet" href="site.css?v=2">
+<link rel="stylesheet" href="site.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
@@ -69,7 +69,7 @@
 
       <div class="chip glass chip--day" data-depth="14">
         <span class="ring" style="--p:.29" aria-hidden="true"><i></i></span>
-        <span><b>День 12 из 42</b><em>Ягодицы и кор, 34 мин</em></span>
+        <span><b>День 12 из 42</b><em>Ягодицы и пресс, 34 мин</em></span>
       </div>
       <div class="chip glass chip--food" data-depth="28">
         <img src="img/food1.webp" alt="" width="56" height="56" loading="lazy">
@@ -173,7 +173,7 @@
 
       <ol class="weeks">
         <li><b>1</b><span><strong>Запуск</strong>Техника, дыхание, первые 20 минут в день</span></li>
-        <li><b>2</b><span><strong>Осанка и кор</strong>Спина держит, живот подтягивается</span></li>
+        <li><b>2</b><span><strong>Пресс и осанка</strong>Спина держит, живот подтягивается</span></li>
         <li><b>3</b><span><strong>Ноги и ягодицы</strong>Сила без лишнего объёма</span></li>
         <li><b>4</b><span><strong>Выносливость</strong>Круговые по 30 минут, пульс в зоне</span></li>
         <li><b>5</b><span><strong>Всё тело</strong>Связки и баланс, тело работает целиком</span></li>
@@ -210,24 +210,24 @@
 
     <div class="menu" aria-live="polite">
       <article class="dish tilt">
-        <img src="img/food2.webp" alt="Йогурт с гранолой, киви и яблоком" width="900" height="900" loading="lazy">
-        <div class="dish__body glass">
+        <div class="dish__photo"><img src="img/food2.webp" alt="Йогурт с гранолой, киви и яблоком" width="900" height="900" loading="lazy"></div>
+        <div class="dish__body">
           <p class="dish__when">Завтрак</p>
           <h3 data-dish="0">Йогурт с гранолой и киви</h3>
           <p class="kbju" data-kbju="0"><span>380 ккал</span><span>Б 22</span><span>Ж 12</span><span>У 44</span></p>
         </div>
       </article>
       <article class="dish tilt">
-        <img src="img/food3.webp" alt="Курица с брокколини и пюре из горошка" width="900" height="900" loading="lazy">
-        <div class="dish__body glass">
+        <div class="dish__photo"><img src="img/food3.webp" alt="Курица с брокколини и пюре из горошка" width="900" height="900" loading="lazy"></div>
+        <div class="dish__body">
           <p class="dish__when">Обед</p>
           <h3 data-dish="1">Курица, брокколини, горошек</h3>
           <p class="kbju" data-kbju="1"><span>460 ккал</span><span>Б 41</span><span>Ж 14</span><span>У 32</span></p>
         </div>
       </article>
       <article class="dish tilt">
-        <img src="img/food1.webp" alt="Боул с лососем, киноа и авокадо" width="900" height="900" loading="lazy">
-        <div class="dish__body glass">
+        <div class="dish__photo"><img src="img/food1.webp" alt="Боул с лососем, киноа и авокадо" width="900" height="900" loading="lazy"></div>
+        <div class="dish__body">
           <p class="dish__when">Ужин</p>
           <h3 data-dish="2">Боул с лососем и киноа</h3>
           <p class="kbju" data-kbju="2"><span>520 ккал</span><span>Б 34</span><span>Ж 22</span><span>У 41</span></p>
@@ -253,7 +253,7 @@
           <span role="rowheader">Пн</span><span role="cell">Всё тело</span><span role="cell">Всё тело</span>
         </div>
         <div role="row" class="sched__row">
-          <span role="rowheader">Ср</span><span role="cell">Ноги и ягодицы</span><span role="cell">Кор и осанка</span>
+          <span role="rowheader">Ср</span><span role="cell">Ноги и ягодицы</span><span role="cell">Пресс и спина</span>
         </div>
         <div role="row" class="sched__row">
           <span role="rowheader">Пт</span><span role="cell">Кардио без прыжков</span><span role="cell">Растяжка</span>
@@ -285,7 +285,8 @@
         <li><b>Запись к Кристине</b><span>Свободные окна на личные и эфиры группы</span></li>
         <li><b>Твой прогресс</b><span>Дни подряд, замеры и фото до и после</span></li>
       </ul>
-      <a class="btn btn--lime" id="open-app" href="app/" >Открыть приложение</a>
+      <a class="btn btn--lime" id="open-app" href="app/">Войти в приложение</a>
+      <p class="app__note">Вход по телефону или нику в Telegram, который ты указала при покупке.</p>
     </div>
 
     <div class="phones" id="phones">
@@ -396,13 +397,13 @@
       <div class="done-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h3 id="done-title">Готово!</h3>
       <p id="done-text">Доступ придёт в приложение. Открой его, и начнём.</p>
-      <a class="btn btn--lime btn--wide" href="app/">Открыть приложение</a>
+      <a class="btn btn--lime btn--wide" href="app/">Войти в приложение</a>
       <button class="btn btn--ghost btn--wide" type="button" data-close>Вернуться на сайт</button>
     </div>
   </form>
 </dialog>
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-<script src="site.js?v=2" defer></script>
+<script src="site.js?v=3" defer></script>
 </body>
 </html>
