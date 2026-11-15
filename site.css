@@ -199,10 +199,23 @@ p { margin: 0; text-wrap: pretty; }
 .pcard--hot .ticks li::before { background: rgba(11,15,12,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B0F0C' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat; }
 .pcard--hot .pcard__glare { background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255,255,255,.35), transparent 45%); }
 
+/* ── результаты ── */
+.ba-grid { max-width: 1240px; margin-inline: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.ba { position: relative; margin: 0; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 1; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.ba img { width: 100%; height: 100%; object-fit: cover; }
+.ba__tag { position: absolute; bottom: 12px; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 650; }
+.ba__tag--l { left: 12px; background: rgba(11,15,12,.72); color: var(--ink); }
+.ba__tag--r { right: 12px; background: var(--lime); color: var(--lime-ink); }
+@media (max-width: 860px) {
+  .ba-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--pad) * -1); padding-inline: var(--pad); scroll-padding-inline: var(--pad); }
+  .ba-grid::-webkit-scrollbar { display: none; }
+  .ba { scroll-snap-align: start; }
+}
+
 /* ── курс ── */
 .course__grid { max-width: 1240px; margin-inline: auto; display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
 .course__photo { position: relative; margin: 0; border-radius: var(--r-xl); overflow: hidden; aspect-ratio: 4 / 5; background: var(--surface); }
-.course__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.course__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
 .course__photo img[hidden] { display: block; opacity: 0; }
 .course__photo img { transition: opacity .5s var(--ease); }
 .course__cap { position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 16px 20px; border-radius: 20px; display: grid; gap: 2px; }

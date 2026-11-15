@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/hero-clean-cut.webp">
-<link rel="stylesheet" href="site.css?v=3">
+<link rel="stylesheet" href="site.css?v=5">
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
@@ -25,6 +25,7 @@
     </a>
     <nav class="nav__links" aria-label="Разделы">
       <a href="#formats">Форматы</a>
+      <a href="#results">Результаты</a>
       <a href="#course">Курс</a>
       <a href="#food">Питание</a>
       <a href="#group">Группа</a>
@@ -60,7 +61,7 @@
 
     <div class="hero__stage" id="stage">
       <div class="slab" aria-hidden="true"></div>
-      <img class="hero__girl" src="img/hero-clean-cut.webp" alt="Кристина с лаймовыми гантелями" width="714" height="1400" fetchpriority="high">
+      <img class="hero__girl" src="img/hero-clean-cut.webp" alt="Кристина, онлайн-тренер" width="697" height="1400" fetchpriority="high">
       <div class="float float--kb" data-depth="38" aria-hidden="true">
         <model-viewer id="kb3d" class="kb3d" alt="" loading="eager" camera-controls disable-zoom disable-pan auto-rotate auto-rotate-delay="0" rotation-per-second="18deg" interaction-prompt="none" shadow-intensity="0" exposure="1" tone-mapping="neutral" environment-image="neutral" camera-orbit="30deg 75deg auto"></model-viewer>
         <img class="kb2d" src="img/kettle-cut.webp" alt="" width="596" height="900">
@@ -149,12 +150,47 @@
   </div>
 </section>
 
+<!-- ═════════ РЕЗУЛЬТАТЫ ═════════ -->
+<section class="sec results" id="results">
+  <header class="sec__head">
+    <p class="kicker"><span class="dot" aria-hidden="true"></span>Результаты учениц</p>
+    <h2 class="h-sec"><span class="outline">До и после</span> без фотошопа</h2>
+    <p class="sec__sub">Обычные фото девочек, с которыми я работала. Не за неделю и не на голодовке, а на тренировках и нормальной еде.</p>
+  </header>
+  <div class="ba-grid">
+    <figure class="ba">
+      <img src="img/result-1.webp" alt="Ученица до и после тренировок" width="1000" height="1000" loading="lazy">
+      <span class="ba__tag ba__tag--l">До</span><span class="ba__tag ba__tag--r">После</span>
+    </figure>
+    <figure class="ba">
+      <img src="img/result-2.webp" alt="Ученица до и после тренировок" width="1000" height="1000" loading="lazy">
+      <span class="ba__tag ba__tag--l">До</span><span class="ba__tag ba__tag--r">После</span>
+    </figure>
+    <figure class="ba">
+      <img src="img/result-3.webp" alt="Ученица до и после тренировок" width="1000" height="1000" loading="lazy">
+      <span class="ba__tag ba__tag--l">До</span><span class="ba__tag ba__tag--r">После</span>
+    </figure>
+    <figure class="ba">
+      <img src="img/result-4.webp" alt="Ученица до и после тренировок" width="1000" height="1000" loading="lazy">
+      <span class="ba__tag ba__tag--l">До</span><span class="ba__tag ba__tag--r">После</span>
+    </figure>
+    <figure class="ba">
+      <img src="img/result-5.webp" alt="Ученица до и после тренировок" width="1000" height="1000" loading="lazy">
+      <span class="ba__tag ba__tag--l">До</span><span class="ba__tag ba__tag--r">После</span>
+    </figure>
+    <figure class="ba">
+      <img src="img/result-6.webp" alt="Ученица до и после тренировок" width="1000" height="1000" loading="lazy">
+      <span class="ba__tag ba__tag--l">До</span><span class="ba__tag ba__tag--r">После</span>
+    </figure>
+  </div>
+</section>
+
 <!-- ═════════ КУРС ═════════ -->
 <section class="sec course" id="course">
   <div class="course__grid">
     <figure class="course__photo">
-      <img data-place="home" src="img/home.webp" alt="Кристина делает выпады дома на коврике" width="1120" height="1400" loading="lazy">
-      <img data-place="gym" src="img/hero-clean.webp" alt="Кристина с гантелями в зале" width="1045" height="1400" loading="lazy" hidden>
+      <img data-place="home" src="img/home.webp" alt="Кристина в студии у зеркала" width="1120" height="1400" loading="lazy">
+      <img data-place="gym" src="img/hero-clean.webp" alt="Кристина в зале" width="1050" height="1400" loading="lazy" hidden>
       <figcaption class="glass course__cap">
         <span class="kit-label">Понадобится</span>
         <span class="kit" data-kit="home">Коврик, две гантели 2–4 кг, резинка</span>
@@ -263,10 +299,10 @@
     </div>
 
     <figure class="group__photo">
-      <img src="img/online.webp" alt="Кристина ведёт онлайн-тренировку перед ноутбуком и кольцевой лампой" width="1600" height="905" loading="lazy">
+      <img src="img/online.webp" alt="Кристина в зале" width="1600" height="900" loading="lazy">
       <div class="live glass">
         <span class="live__dot" aria-hidden="true"></span>
-        <span><b>В эфире</b> 23 участницы</span>
+        <span><b>Эфиры</b> пн, ср, пт</span>
       </div>
     </figure>
   </div>
@@ -303,7 +339,7 @@
 <!-- ═════════ О КРИСТИНЕ ═════════ -->
 <section class="sec about" id="about">
   <div class="about__card">
-    <img class="about__img" src="img/hero-clean.webp" alt="Кристина" width="1045" height="1400" loading="lazy">
+    <img class="about__img" src="img/about.webp" alt="Кристина" width="1120" height="1400" loading="lazy">
     <div class="about__copy">
       <p class="kicker"><span class="dot" aria-hidden="true"></span>Кто ведёт</p>
       <h2 class="h-sec">Привет, я&nbsp;Кристина</h2>
@@ -404,6 +440,6 @@
 </dialog>
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-<script src="site.js?v=3" defer></script>
+<script src="site.js?v=4" defer></script>
 </body>
 </html>
