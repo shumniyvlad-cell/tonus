@@ -162,79 +162,130 @@
   bindPills('time', 'time');
   renderMenu();
 
-  // ── окно покупки: шаг 1 форма, шаг 2 готово. «Назад» телефона закрывает окно.
+  // ── предварительная запись: шаг 1 анкета, шаг 2 «ты в списке». «Назад» телефона закрывает окно.
+  // Пока цен нет, заявка уходит на приёмник с админкой. Когда вернём оплату, это окно меняется обратно.
+  const host = location.hostname;
+  const API = /(^|\.)shahkris\.ru$|\.sslip\.io$/.test(host) ? '/api/lead'
+    : /^(localhost|127\.0\.0\.1)$/.test(host) ? 'http://localhost:8831/api/lead'
+    : 'https://tonus.83-141-94-106.sslip.io/api/lead';
   const dlg = document.getElementById('buy');
   const form = document.getElementById('buy-form');
   const steps = form.querySelectorAll('.step');
-  const payBtn = document.getElementById('pay-btn');
+  const sendBtn = document.getElementById('pay-btn');
   const fName = document.getElementById('f-name');
-  const fContact = document.getElementById('f-contact');
+  const fTg = document.getElementById('f-tg');
+  const fIg = document.getElementById('f-ig');
+  const hint = document.getElementById('e-contact');
+  const formErr = document.getElementById('e-form');
+  const groups = [...form.querySelectorAll('.chips')];
   const DONE = {
-    course: ['Курс твой!', 'Войди в приложение по номеру или нику, который указала, и начинай с анкеты: я соберу тебе меню.'],
-    personal: ['Ты записана!', 'Войди в приложение по своему контакту и выбери время первой тренировки. Я напишу в течение дня.'],
-    group: ['Добро пожаловать в группу!', 'Войди в приложение по своему контакту: там расписание эфиров и запись. Ближайший в понедельник в 8:00 по Москве.'],
+    course: 'Напишу тебе, как только откроем курс. Первыми зайдут те, кто в этом списке.',
+    personal: 'Напишу тебе в течение пары дней, подберём время первой тренировки.',
+    group: 'Напишу тебе перед первым эфиром группы и пришлю расписание.',
   };
-  let pushed = false, lastFocus = null;
+  let pushed = false, lastFocus = null, busy = false;
 
   const showStep = (n) => steps.forEach((s) => (s.hidden = s.dataset.step !== String(n)));
-  const setErr = (input, msg) => {
-    const err = document.getElementById(input.getAttribute('aria-describedby'));
-    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
-    err.hidden = !msg;
+  const setErr = (input, bad) => {
+    input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    const id = (input.getAttribute('aria-describedby') || '').split(' ').pop();
+    const err = id && document.getElementById(id);
+    if (err && err.classList.contains('err')) err.hidden = !bad;
+  };
+  const clearAll = () => {
+    [fName, fTg, fIg, ...groups].forEach((i) => setErr(i, false));
+    hint.classList.remove('is-err');
+    hint.textContent = 'Хватит одного, куда тебе удобнее написать.';
+    formErr.hidden = true;
   };
   const open = (product) => {
     lastFocus = document.activeElement;
     form.reset();
     const r = form.querySelector(`input[name="product"][value="${product}"]`);
     if (r) r.checked = true;
-    [fName, fContact].forEach((i) => setErr(i, ''));
+    clearAll();
     showStep(1);
     dlg.showModal();
+    dlg.scrollTop = 0;
     fName.focus();
     history.pushState({buy: true}, '');
     pushed = true;
   };
-  const close = () => {
-    if (!dlg.open) return;
-    dlg.close();
-  };
+  const close = () => { if (dlg.open) dlg.close(); };
   dlg.addEventListener('close', () => {
     if (pushed) { pushed = false; history.back(); }
     lastFocus?.focus?.();
   });
-  addEventListener('popstate', () => {
-    if (pushed) { pushed = false; dlg.close(); }
-  });
+  addEventListener('popstate', () => { if (pushed) { pushed = false; dlg.close(); } });
   dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
   form.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) close(); });
   document.querySelectorAll('[data-buy]').forEach((b) => b.addEventListener('click', () => open(b.dataset.buy)));
+  // из приложения приходят по ссылке /#zapis-course: сразу открываем анкету на нужном продукте
+  const fromApp = /^#zapis-(course|personal|group)$/.exec(location.hash);
+  if (fromApp) {
+    history.replaceState(null, '', location.pathname + location.search + '#formats');
+    document.getElementById('formats')?.scrollIntoView();
+    open(fromApp[1]);
+  }
 
-  [fName, fContact].forEach((i) => i.addEventListener('input', () => i.getAttribute('aria-invalid') === 'true' && setErr(i, '')));
+  [fName, fTg, fIg].forEach((i) => i.addEventListener('input', () => {
+    if (i.getAttribute('aria-invalid') === 'true') setErr(i, false);
+    if (i !== fName && hint.classList.contains('is-err')) { hint.classList.remove('is-err'); hint.textContent = 'Хватит одного, куда тебе удобнее написать.'; }
+  }));
+  groups.forEach((g) => g.addEventListener('change', () => setErr(g, false)));
 
-  form.addEventListener('submit', (e) => {
+  const handle = (v, re) => v.trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '').replace(re, '').replace(/^@+/, '').split(/[/?#]/)[0];
+  const pick = (name) => form.querySelector(`input[name="${name}"]:checked`)?.value || '';
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (busy) return;
+    formErr.hidden = true;
     const name = fName.value.trim();
-    const contact = fContact.value.trim();
-    const digits = contact.replace(/\D/g, '');
-    const okContact = /^@[a-zA-Z0-9_]{4,}$/.test(contact) || (digits.length >= 10 && digits.length <= 11 && !/[a-zA-Zа-яА-Я]/.test(contact));
-    setErr(fName, name ? '' : 'err');
-    setErr(fContact, okContact ? '' : 'err');
-    const firstBad = !name ? fName : !okContact ? fContact : null;
+    const tg = handle(fTg.value, /^t(elegram)?\.me\//i);
+    const ig = handle(fIg.value, /^instagram\.com\//i);
+    const badTg = tg && !/^[A-Za-z0-9_]{5,32}$/.test(tg);
+    const badIg = ig && !/^[A-Za-z0-9_.]{1,30}$/.test(ig);
+    const noContact = !tg && !ig;
+    setErr(fName, name.length < 2);
+    setErr(fTg, badTg);
+    setErr(fIg, badIg);
+    hint.classList.toggle('is-err', noContact);
+    hint.textContent = noContact ? 'Оставь Telegram или Instagram, чтобы я могла тебе написать' : 'Хватит одного, куда тебе удобнее написать.';
+    const answers = {};
+    groups.forEach((g) => { const n = g.querySelector('input').name; answers[n] = pick(n); setErr(g, !answers[n]); });
+    const firstBad = name.length < 2 ? fName : badTg || (noContact) ? fTg : badIg ? fIg
+      : groups.find((g) => g.getAttribute('aria-invalid') === 'true')?.querySelector('input');
     if (firstBad) { firstBad.focus(); return; }
 
-    const product = form.querySelector('input[name="product"]:checked')?.value || 'course';
-    payBtn.setAttribute('aria-busy', 'true');
-    payBtn.innerHTML = '<span class="spin" aria-hidden="true"></span><span>Проводим оплату</span>';
-    setTimeout(() => {
-      payBtn.removeAttribute('aria-busy');
-      payBtn.innerHTML = '<span class="pay-label">Оплатить</span>';
-      // покупка уходит в приложение: оно подставит контакт во вход и откроет доступ
-      try { localStorage.setItem('tonus:handoff', JSON.stringify({product, name, contact, at: Date.now()})); } catch (err) { /* приватный режим: войдёт по коду вручную */ }
-      const [t, txt] = DONE[product];
-      document.getElementById('done-title').textContent = `${name}, ${t.charAt(0).toLowerCase()}${t.slice(1)}`;
-      document.getElementById('done-text').textContent = txt;
-      showStep(2);
-      dlg.querySelector('.step--done .btn--lime').focus();
-    }, 1100);
+    const product = pick('product') || 'course';
+    busy = true;
+    sendBtn.setAttribute('aria-busy', 'true');
+    sendBtn.innerHTML = '<span class="spin" aria-hidden="true"></span><span>Отправляем</span>';
+    let ok = false;
+    try {
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          product, name, telegram: tg ? '@' + tg : '', instagram: ig ? '@' + ig : '',
+          ...answers, note: document.getElementById('f-note').value.trim(),
+          company: form.company.value, source: location.hostname,
+        }),
+      });
+      ok = res.ok;
+      if (!ok) formErr.textContent = res.status === 429 ? 'Слишком много попыток подряд. Подожди пару минут и отправь ещё раз.' : 'Что-то не сохранилось. Проверь поля и отправь ещё раз.';
+    } catch (err) {
+      formErr.textContent = 'Нет связи. Проверь интернет и отправь ещё раз.';
+    }
+    busy = false;
+    sendBtn.removeAttribute('aria-busy');
+    sendBtn.innerHTML = '<span class="pay-label">Записаться</span>';
+    if (!ok) { formErr.hidden = false; return; }
+    document.getElementById('done-title').textContent = `${name}, ты в списке!`;
+    document.getElementById('done-text').textContent = DONE[product];
+    showStep(2);
+    dlg.scrollTop = 0;
+    dlg.querySelector('.step--done .btn--lime').focus();
   });
 })();

@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/hero-clean-cut.webp">
-<link rel="stylesheet" href="site.css?v=6">
+<link rel="stylesheet" href="site.css?v=8">
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
@@ -31,7 +31,7 @@
       <a href="#group">Группа</a>
       <a href="#app">Приложение</a>
     </nav>
-    <button class="btn btn--lime btn--sm" type="button" data-buy="course">Начать</button>
+    <button class="btn btn--lime btn--sm" type="button" data-buy="course">Записаться</button>
   </div>
 </header>
 
@@ -109,8 +109,7 @@
         <li>Доступ на 6 месяцев</li>
       </ul>
       <div class="pcard__foot">
-        <p class="price"><b>6 900 ₽</b><span>один раз</span></p>
-        <button class="btn btn--ghost" type="button" data-buy="course">Купить курс</button>
+        <button class="btn btn--ghost btn--wide" type="button" data-buy="course">Предварительная запись</button>
       </div>
     </article>
 
@@ -126,8 +125,7 @@
         <li>Чат со мной между занятиями</li>
       </ul>
       <div class="pcard__foot">
-        <p class="price"><b>24 900 ₽</b><span>за 10 занятий</span></p>
-        <button class="btn btn--ink" type="button" data-buy="personal">Записаться</button>
+        <button class="btn btn--ink btn--wide" type="button" data-buy="personal">Предварительная запись</button>
       </div>
     </article>
 
@@ -143,8 +141,7 @@
         <li>Отмена подписки в один клик</li>
       </ul>
       <div class="pcard__foot">
-        <p class="price"><b>3 490 ₽</b><span>в месяц</span></p>
-        <button class="btn btn--ghost" type="button" data-buy="group">Подписаться</button>
+        <button class="btn btn--ghost btn--wide" type="button" data-buy="group">Предварительная запись</button>
       </div>
     </article>
   </div>
@@ -295,7 +292,7 @@
           <span role="rowheader">Пт</span><span role="cell">Кардио без прыжков</span><span role="cell">Растяжка</span>
         </div>
       </div>
-      <button class="btn btn--lime" type="button" data-buy="group">Подписаться за 3 490 ₽ в месяц</button>
+      <button class="btn btn--lime" type="button" data-buy="group">Предварительная запись в группу</button>
     </div>
 
     <figure class="group__photo">
@@ -384,7 +381,7 @@
     <img class="final__kb" src="img/kettle-cut.webp" alt="" width="596" height="900" loading="lazy" aria-hidden="true">
     <h2 class="h-display h-display--final"><span class="outline">Начни</span><span>с понедельника</span></h2>
     <p>Или прямо сегодня: первая тренировка курса занимает 20 минут.</p>
-    <button class="btn btn--ink" type="button" data-buy="course">Начать курс</button>
+    <button class="btn btn--ink" type="button" data-buy="course">Предварительная запись</button>
   </div>
 </section>
 </main>
@@ -395,51 +392,80 @@
       <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18"/><path d="M16 20h32v8H36v20h-8V28H16z"/></svg>
       <span>Тонус</span>
     </a>
-    <p>Онлайн-тренировки и питание с Кристиной. Демо-версия: цены и оплата тестовые.</p>
+    <p>Онлайн-тренировки и питание с Кристиной. Сейчас идёт предварительная запись.</p>
   </div>
 </footer>
 
-<!-- ═════════ ОКНО ПОКУПКИ ═════════ -->
+<!-- ═════════ ПРЕДВАРИТЕЛЬНАЯ ЗАПИСЬ ═════════ -->
 <dialog class="sheet" id="buy" aria-labelledby="buy-title">
   <form class="sheet__in" id="buy-form" novalidate>
     <div class="sheet__grab" aria-hidden="true"></div>
     <header class="sheet__head">
-      <h2 id="buy-title">Оформление</h2>
+      <h2 id="buy-title">Предварительная запись</h2>
       <button class="x" type="button" data-close aria-label="Закрыть"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </header>
 
     <div class="step" data-step="1">
+      <p class="sheet__lead">Старт совсем скоро. Оставь контакт и пару ответов, и я напишу тебе первой, когда откроем запись.</p>
       <fieldset class="opts">
-        <legend>Что берём</legend>
-        <label class="opt"><input type="radio" name="product" value="course"><span><b>Курс «Тонус за 6 недель»</b><em>6 900 ₽ один раз</em></span></label>
-        <label class="opt"><input type="radio" name="product" value="personal"><span><b>10 личных тренировок</b><em>24 900 ₽ за пакет</em></span></label>
-        <label class="opt"><input type="radio" name="product" value="group"><span><b>Группа онлайн</b><em>3 490 ₽ в месяц</em></span></label>
+        <legend>Куда записываемся</legend>
+        <label class="opt"><input type="radio" name="product" value="course"><span><b>Курс «Тонус за 6 недель»</b><em>Видеоуроки и меню на каждый день</em></span></label>
+        <label class="opt"><input type="radio" name="product" value="personal"><span><b>10 личных тренировок</b><em>Один на один со мной онлайн</em></span></label>
+        <label class="opt"><input type="radio" name="product" value="group"><span><b>Группа онлайн</b><em>Эфиры в пн, ср и пт</em></span></label>
       </fieldset>
       <div class="field">
-        <label for="f-name">Как тебя зовут</label>
+        <label for="f-name">Как тебя зовут</label>
         <input id="f-name" name="name" autocomplete="given-name" placeholder="Например, Аня" aria-describedby="e-name">
-        <p class="err" id="e-name" hidden>Напиши имя, чтобы я знала, как к тебе обращаться</p>
+        <p class="err" id="e-name" hidden>Напиши имя, чтобы я знала, как к тебе обращаться</p>
       </div>
+      <div class="pair">
+        <div class="field">
+          <label for="f-tg">Telegram</label>
+          <input id="f-tg" name="telegram" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nick" aria-describedby="e-contact e-tg">
+          <p class="err" id="e-tg" hidden>Ник из латиницы, цифр и _, от 5 символов</p>
+        </div>
+        <div class="field">
+          <label for="f-ig">Instagram</label>
+          <input id="f-ig" name="instagram" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nick" aria-describedby="e-contact e-ig">
+          <p class="err" id="e-ig" hidden>Ник из латиницы, цифр, точек и _</p>
+        </div>
+      </div>
+      <p class="hint" id="e-contact">Хватит одного, куда тебе удобнее написать.</p>
+      <fieldset class="chips" aria-describedby="e-goal">
+        <legend>Какая цель</legend>
+        <div class="chips__row"><label class="choice"><input type="radio" name="goal" value="Подтянуть фигуру"><span>Подтянуть фигуру</span></label><label class="choice"><input type="radio" name="goal" value="Сбросить 3–5 кг"><span>Сбросить 3–5 кг</span></label><label class="choice"><input type="radio" name="goal" value="Больше энергии"><span>Больше энергии</span></label></div>
+        <p class="err" id="e-goal" hidden>Выбери один вариант</p>
+      </fieldset>
+      <fieldset class="chips" aria-describedby="e-place">
+        <legend>Где удобнее заниматься</legend>
+        <div class="chips__row"><label class="choice"><input type="radio" name="place" value="Дома"><span>Дома</span></label><label class="choice"><input type="radio" name="place" value="В зале"><span>В зале</span></label><label class="choice"><input type="radio" name="place" value="Пока не знаю"><span>Пока не знаю</span></label></div>
+        <p class="err" id="e-place" hidden>Выбери один вариант</p>
+      </fieldset>
+      <fieldset class="chips" aria-describedby="e-level">
+        <legend>Твой опыт</legend>
+        <div class="chips__row"><label class="choice"><input type="radio" name="level" value="Не занималась"><span>Не занималась</span></label><label class="choice"><input type="radio" name="level" value="Занималась раньше"><span>Занималась раньше</span></label><label class="choice"><input type="radio" name="level" value="Тренируюсь сейчас"><span>Тренируюсь сейчас</span></label></div>
+        <p class="err" id="e-level" hidden>Выбери один вариант</p>
+      </fieldset>
       <div class="field">
-        <label for="f-contact">Телефон или ник в Telegram</label>
-        <input id="f-contact" name="contact" autocomplete="tel" inputmode="text" placeholder="+7 900 000-00-00 или @nick" aria-describedby="e-contact">
-        <p class="err" id="e-contact" hidden>Нужен телефон из 10–11 цифр или ник с @</p>
+        <label for="f-note">Что мне важно знать <span class="opt-mark">необязательно</span></label>
+        <textarea id="f-note" name="note" rows="3" maxlength="500" placeholder="Травмы, график, что не получалось раньше"></textarea>
       </div>
-      <button class="btn btn--lime btn--wide" type="submit" id="pay-btn"><span class="pay-label">Оплатить</span></button>
-      <p class="sheet__note">Оплата в демо тестовая, деньги не спишутся.</p>
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <p class="err err--form" id="e-form" role="alert" hidden></p>
+      <button class="btn btn--lime btn--wide" type="submit" id="pay-btn"><span class="pay-label">Записаться</span></button>
+      <p class="sheet__note">Без оплаты. Твои ответы увижу только я.</p>
     </div>
 
     <div class="step step--done" data-step="2" hidden>
       <div class="done-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-      <h3 id="done-title">Готово!</h3>
-      <p id="done-text">Доступ придёт в приложение. Открой его, и начнём.</p>
-      <a class="btn btn--lime btn--wide" href="app/">Войти в приложение</a>
-      <button class="btn btn--ghost btn--wide" type="button" data-close>Вернуться на сайт</button>
+      <h3 id="done-title">Ты в списке!</h3>
+      <p id="done-text">Напишу тебе, как только откроем запись.</p>
+      <button class="btn btn--lime btn--wide" type="button" data-close>Вернуться на сайт</button>
     </div>
   </form>
 </dialog>
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-<script src="site.js?v=4" defer></script>
+<script src="site.js?v=7" defer></script>
 </body>
 </html>
