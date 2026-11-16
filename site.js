@@ -167,7 +167,7 @@
   const host = location.hostname;
   const API = /(^|\.)shahkris\.ru$|\.sslip\.io$/.test(host) ? '/api/lead'
     : /^(localhost|127\.0\.0\.1)$/.test(host) ? 'http://localhost:8831/api/lead'
-    : 'https://tonus.83-141-94-106.sslip.io/api/lead';
+    : 'https://shahkris.ru/api/lead';
   const dlg = document.getElementById('buy');
   const form = document.getElementById('buy-form');
   const steps = form.querySelectorAll('.step');
