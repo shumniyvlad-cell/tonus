@@ -464,3 +464,11 @@ html:not(.motion) .reveal { opacity: 1; transform: none; }
 @media (pointer: coarse) {
   .btn:hover svg { transform: none; }
 }
+.consent { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-size: 14px; color: var(--muted); line-height: 1.45; }
+.consent input { flex: none; width: 22px; height: 22px; margin: 0; accent-color: var(--lime); cursor: pointer; }
+.consent a { color: var(--ink); text-underline-offset: 3px; }
+.consent:has(input[aria-invalid="true"]) input { outline: 2px solid #FF6B5B; outline-offset: 2px; }
+.foot__links { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; }
+.foot__links a { color: var(--ink); text-underline-offset: 3px; }
+.foot__links a:hover { color: var(--lime); }
+.about__ig { justify-self: start; }

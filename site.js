@@ -177,6 +177,7 @@
   const fIg = document.getElementById('f-ig');
   const hint = document.getElementById('e-contact');
   const formErr = document.getElementById('e-form');
+  const fConsent = document.getElementById('f-consent');
   const groups = [...form.querySelectorAll('.chips')];
   const DONE = {
     course: 'Напишу тебе, как только откроем курс. Первыми зайдут те, кто в этом списке.',
@@ -193,7 +194,7 @@
     if (err && err.classList.contains('err')) err.hidden = !bad;
   };
   const clearAll = () => {
-    [fName, fTg, fIg, ...groups].forEach((i) => setErr(i, false));
+    [fName, fTg, fIg, fConsent, ...groups].forEach((i) => setErr(i, false));
     hint.classList.remove('is-err');
     hint.textContent = 'Хватит одного, куда тебе удобнее написать.';
     formErr.hidden = true;
@@ -233,9 +234,10 @@
     if (i !== fName && hint.classList.contains('is-err')) { hint.classList.remove('is-err'); hint.textContent = 'Хватит одного, куда тебе удобнее написать.'; }
   }));
   groups.forEach((g) => g.addEventListener('change', () => setErr(g, false)));
+  fConsent.addEventListener('change', () => fConsent.checked && setErr(fConsent, false));
 
   const handle = (v, re) => v.trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '').replace(re, '').replace(/^@+/, '').split(/[/?#]/)[0];
-  const pick = (name) => form.querySelector(`input[name="${name}"]:checked`)?.value || '';
+  const pick = (name) => (form.querySelector(`input[name="${name}"]:checked`)?.value || '').replace(/\u00a0/g, ' ');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -254,8 +256,10 @@
     hint.textContent = noContact ? 'Оставь Telegram или Instagram, чтобы я могла тебе написать' : 'Хватит одного, куда тебе удобнее написать.';
     const answers = {};
     groups.forEach((g) => { const n = g.querySelector('input').name; answers[n] = pick(n); setErr(g, !answers[n]); });
+    setErr(fConsent, !fConsent.checked);
     const firstBad = name.length < 2 ? fName : badTg || (noContact) ? fTg : badIg ? fIg
-      : groups.find((g) => g.getAttribute('aria-invalid') === 'true')?.querySelector('input');
+      : groups.find((g) => g.getAttribute('aria-invalid') === 'true')?.querySelector('input')
+      || (!fConsent.checked ? fConsent : null);
     if (firstBad) { firstBad.focus(); return; }
 
     const product = pick('product') || 'course';
@@ -270,7 +274,7 @@
         body: JSON.stringify({
           product, name, telegram: tg ? '@' + tg : '', instagram: ig ? '@' + ig : '',
           ...answers, note: document.getElementById('f-note').value.trim(),
-          company: form.company.value, source: location.hostname,
+          company: form.company.value, source: location.hostname, consent: true,
         }),
       });
       ok = res.ok;

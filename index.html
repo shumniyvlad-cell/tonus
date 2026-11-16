@@ -6,13 +6,22 @@
 <title>Тонус с Кристиной — тренировки и питание онлайн</title>
 <meta name="description" content="Курс «Тонус за 6 недель», личные и групповые онлайн-тренировки с Кристиной. Дома или в зале, рецепты под твою анкету.">
 <meta name="theme-color" content="#0B0F0C">
-<meta name="robots" content="noindex">
+<link rel="canonical" href="https://shahkris.ru/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Тонус с Кристиной">
+<meta property="og:title" content="Тонус с Кристиной — тренировки и питание онлайн">
+<meta property="og:description" content="Курс «Тонус за 6 недель», личные и групповые онлайн-тренировки. Дома или в зале, рецепты под твою анкету. Идёт предварительная запись.">
+<meta property="og:url" content="https://shahkris.ru/">
+<meta property="og:image" content="https://shahkris.ru/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B0F0C'/%3E%3Cpath d='M16 20h32v8H36v20h-8V28H16z' fill='%23B8F03E'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/hero-clean-cut.webp">
-<link rel="stylesheet" href="site.css?v=8">
+<link rel="stylesheet" href="site.css?v=9">
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
@@ -187,7 +196,7 @@
   <div class="course__grid">
     <figure class="course__photo">
       <img data-place="home" src="img/home.webp" alt="Кристина в студии у зеркала" width="1120" height="1400" loading="lazy">
-      <img data-place="gym" src="img/hero-clean.webp" alt="Кристина в студии" width="1050" height="1400" loading="lazy" hidden>
+      <img data-place="gym" src="img/hero-clean.webp" alt="Кристина в студии" width="1050" height="1400" loading="lazy" hidden>
       <figcaption class="glass course__cap">
         <span class="kit-label">Понадобится</span>
         <span class="kit" data-kit="home">Коврик, две гантели 2–4 кг, резинка</span>
@@ -342,6 +351,7 @@
       <h2 class="h-sec">Привет, я&nbsp;Кристина</h2>
       <p>Я не про «минус 10 кг к лету» и не про спорт через силу. Я про то, чтобы тебе нравилось своё тело в зеркале, хватало сил на день и еда была в радость.</p>
       <p>Собрала курс, который проходят между работой и детьми: 30 минут, коврик и пара гантелей. А если хочется, чтобы кто-то держал за руку, возьму тебя лично.</p>
+      <a class="btn btn--ghost about__ig" href="https://www.instagram.com/shahtina_fitnes/" target="_blank" rel="noopener">Мой Instagram @shahtina_fitnes</a>
     </div>
   </div>
 </section>
@@ -406,66 +416,71 @@
     </header>
 
     <div class="step" data-step="1">
-      <p class="sheet__lead">Старт совсем скоро. Оставь контакт и пару ответов, и я напишу тебе первой, когда откроем запись.</p>
+      <p class="sheet__lead">Старт совсем скоро. Оставь контакт и пару ответов, и я напишу тебе первой, когда откроем запись.</p>
       <fieldset class="opts">
         <legend>Куда записываемся</legend>
-        <label class="opt"><input type="radio" name="product" value="course"><span><b>Курс «Тонус за 6 недель»</b><em>Видеоуроки и меню на каждый день</em></span></label>
-        <label class="opt"><input type="radio" name="product" value="personal"><span><b>10 личных тренировок</b><em>Один на один со мной онлайн</em></span></label>
-        <label class="opt"><input type="radio" name="product" value="group"><span><b>Группа онлайн</b><em>Эфиры в пн, ср и пт</em></span></label>
+        <label class="opt"><input type="radio" name="product" value="course"><span><b>Курс «Тонус за 6 недель»</b><em>Видеоуроки и меню на каждый день</em></span></label>
+        <label class="opt"><input type="radio" name="product" value="personal"><span><b>10 личных тренировок</b><em>Один на один со мной онлайн</em></span></label>
+        <label class="opt"><input type="radio" name="product" value="group"><span><b>Группа онлайн</b><em>Эфиры в пн, ср и пт</em></span></label>
       </fieldset>
       <div class="field">
-        <label for="f-name">Как тебя зовут</label>
+        <label for="f-name">Как тебя зовут</label>
         <input id="f-name" name="name" autocomplete="given-name" placeholder="Например, Аня" aria-describedby="e-name">
-        <p class="err" id="e-name" hidden>Напиши имя, чтобы я знала, как к тебе обращаться</p>
+        <p class="err" id="e-name" hidden>Напиши имя, чтобы я знала, как к тебе обращаться</p>
       </div>
       <div class="pair">
         <div class="field">
           <label for="f-tg">Telegram</label>
           <input id="f-tg" name="telegram" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nick" aria-describedby="e-contact e-tg">
-          <p class="err" id="e-tg" hidden>Ник из латиницы, цифр и _, от 5 символов</p>
+          <p class="err" id="e-tg" hidden>Ник из латиницы, цифр и _, от 5 символов</p>
         </div>
         <div class="field">
           <label for="f-ig">Instagram</label>
           <input id="f-ig" name="instagram" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nick" aria-describedby="e-contact e-ig">
-          <p class="err" id="e-ig" hidden>Ник из латиницы, цифр, точек и _</p>
+          <p class="err" id="e-ig" hidden>Ник из латиницы, цифр, точек и _</p>
         </div>
       </div>
       <p class="hint" id="e-contact">Хватит одного, куда тебе удобнее написать.</p>
       <fieldset class="chips" aria-describedby="e-goal">
         <legend>Какая цель</legend>
-        <div class="chips__row"><label class="choice"><input type="radio" name="goal" value="Подтянуть фигуру"><span>Подтянуть фигуру</span></label><label class="choice"><input type="radio" name="goal" value="Сбросить 3–5 кг"><span>Сбросить 3–5 кг</span></label><label class="choice"><input type="radio" name="goal" value="Больше энергии"><span>Больше энергии</span></label></div>
+        <div class="chips__row"><label class="choice"><input type="radio" name="goal" value="Подтянуть фигуру"><span>Подтянуть фигуру</span></label><label class="choice"><input type="radio" name="goal" value="Сбросить 3–5 кг"><span>Сбросить 3–5 кг</span></label><label class="choice"><input type="radio" name="goal" value="Больше энергии"><span>Больше энергии</span></label></div>
         <p class="err" id="e-goal" hidden>Выбери один вариант</p>
       </fieldset>
       <fieldset class="chips" aria-describedby="e-place">
         <legend>Где удобнее заниматься</legend>
-        <div class="chips__row"><label class="choice"><input type="radio" name="place" value="Дома"><span>Дома</span></label><label class="choice"><input type="radio" name="place" value="В зале"><span>В зале</span></label><label class="choice"><input type="radio" name="place" value="Пока не знаю"><span>Пока не знаю</span></label></div>
+        <div class="chips__row"><label class="choice"><input type="radio" name="place" value="Дома"><span>Дома</span></label><label class="choice"><input type="radio" name="place" value="В зале"><span>В зале</span></label><label class="choice"><input type="radio" name="place" value="Пока не знаю"><span>Пока не знаю</span></label></div>
         <p class="err" id="e-place" hidden>Выбери один вариант</p>
       </fieldset>
       <fieldset class="chips" aria-describedby="e-level">
         <legend>Твой опыт</legend>
-        <div class="chips__row"><label class="choice"><input type="radio" name="level" value="Не занималась"><span>Не занималась</span></label><label class="choice"><input type="radio" name="level" value="Занималась раньше"><span>Занималась раньше</span></label><label class="choice"><input type="radio" name="level" value="Тренируюсь сейчас"><span>Тренируюсь сейчас</span></label></div>
+        <div class="chips__row"><label class="choice"><input type="radio" name="level" value="Не занималась"><span>Не занималась</span></label><label class="choice"><input type="radio" name="level" value="Занималась раньше"><span>Занималась раньше</span></label><label class="choice"><input type="radio" name="level" value="Тренируюсь сейчас"><span>Тренируюсь сейчас</span></label></div>
         <p class="err" id="e-level" hidden>Выбери один вариант</p>
       </fieldset>
       <div class="field">
-        <label for="f-note">Что мне важно знать <span class="opt-mark">необязательно</span></label>
-        <textarea id="f-note" name="note" rows="3" maxlength="500" placeholder="Травмы, график, что не получалось раньше"></textarea>
+        <label for="f-note">Что мне важно знать <span class="opt-mark">необязательно</span></label>
+        <textarea id="f-note" name="note" rows="3" maxlength="500" placeholder="График, пожелания, что не получалось раньше"></textarea>
       </div>
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="consent">
+        <input type="checkbox" id="f-consent" name="consent" aria-describedby="e-consent">
+        <span>Соглашаюсь на обработку моих данных по <a href="privacy/" target="_blank" rel="noopener">политике конфиденциальности</a></span>
+      </label>
+      <p class="err" id="e-consent" hidden>Без согласия я не смогу сохранить анкету</p>
       <p class="err err--form" id="e-form" role="alert" hidden></p>
       <button class="btn btn--lime btn--wide" type="submit" id="pay-btn"><span class="pay-label">Записаться</span></button>
-      <p class="sheet__note">Без оплаты. Твои ответы увижу только я.</p>
+      <p class="sheet__note">Без оплаты. Твои ответы увижу только я.</p>
     </div>
 
     <div class="step step--done" data-step="2" hidden>
       <div class="done-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-      <h3 id="done-title">Ты в списке!</h3>
-      <p id="done-text">Напишу тебе, как только откроем запись.</p>
-      <button class="btn btn--lime btn--wide" type="button" data-close>Вернуться на сайт</button>
+      <h3 id="done-title">Ты в списке!</h3>
+      <p id="done-text">Напишу тебе, как только откроем запись.</p>
+      <button class="btn btn--lime btn--wide" type="button" data-close>Вернуться на сайт</button>
     </div>
   </form>
 </dialog>
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-<script src="site.js?v=7" defer></script>
+<script src="site.js?v=9" defer></script>
 </body>
 </html>
