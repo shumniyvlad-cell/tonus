@@ -473,3 +473,6 @@ html:not(.motion) .reveal { opacity: 1; transform: none; }
 .foot__links a:hover { color: var(--lime); }
 .about__ig { justify-self: start; }
 @media (max-width: 400px) { .float--kb { width: 120px; } }
+.quiz__gift { margin-top: 28px; padding: 20px; border-radius: 22px; background: color-mix(in oklab, var(--lime) 9%, var(--surface, #151C17)); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--lime) 35%, transparent); display: grid; gap: 14px; }
+.quiz__gift p { color: var(--muted); font-size: 15px; }
+.quiz__gift b { display: block; color: var(--ink); font-size: 18px; letter-spacing: -.01em; margin-bottom: 4px; }
